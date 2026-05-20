@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #faf6f0;
+  --color-primary-100: #f0e6d6;
+  --color-primary-200: #e2cca9;
+  --color-primary-300: #d1ad7a;
+  --color-primary-400: #b98e54;
+  --color-primary-500: #9c713b;
+  --color-primary-600: #80572b;
+  --color-primary-700: #664321;
+  --color-primary-800: #4d3118;
+  --color-primary-900: #38220f;
+  
+  --color-bakery-bg: #f8f1e7;
+  --color-bakery-primary: #8b5e3c;
+  --color-bakery-dark: #5c3d2e;
+  --color-bakery-beige: #efe3d3;
+}
+
+
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f1e7;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbb49e;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5e3c;
+}
+
+/* Swiper custom overrides */
+.swiper-pagination-bullet-active {
+  background: #8b5e3c !important;
+}
+.swiper-button-next, .swiper-button-prev {
+  color: #8b5e3c !important;
+}
