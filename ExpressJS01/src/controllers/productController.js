@@ -1,6 +1,7 @@
 const Product = require("../models/product");
 const Review = require("../models/review");
 const OrderItem = require("../models/orderItem");
+const ProductImage = require("../models/productImage");
 
 const getProducts = async (req, res) => {
   try {
@@ -8,6 +9,7 @@ const getProducts = async (req, res) => {
       include: [
         { model: Review, as: "reviews" },
         { model: OrderItem, as: "orderItems" },
+        { model: ProductImage, as: "images" },
       ],
     });
 
@@ -50,6 +52,7 @@ const getProducts = async (req, res) => {
         soldCount,
         isNew,
         isBestSeller,
+        images: plainProduct.images || [],
       };
     });
 
@@ -70,6 +73,7 @@ const getProductById = async (req, res) => {
       include: [
         { model: Review, as: "reviews" },
         { model: OrderItem, as: "orderItems" },
+        { model: ProductImage, as: "images" },
       ],
     });
 
@@ -118,6 +122,7 @@ const getProductById = async (req, res) => {
       soldCount,
       isNew,
       isBestSeller,
+      images: plainProduct.images || [],
     };
 
     return res.status(200).json(formattedProduct);

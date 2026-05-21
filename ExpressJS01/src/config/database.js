@@ -28,6 +28,7 @@ const User = require("../models/user");
 const Product = require("../models/product");
 const Review = require("../models/review");
 const OrderItem = require("../models/orderItem");
+const ProductImage = require("../models/productImage");
 
 // Establish Relationships (Associations)
 Product.hasMany(Review, { foreignKey: "productId", as: "reviews" });
@@ -35,6 +36,9 @@ Review.belongsTo(Product, { foreignKey: "productId", as: "product" });
 
 Product.hasMany(OrderItem, { foreignKey: "productId", as: "orderItems" });
 OrderItem.belongsTo(Product, { foreignKey: "productId", as: "product" });
+
+Product.hasMany(ProductImage, { foreignKey: "productId", as: "images" });
+ProductImage.belongsTo(Product, { foreignKey: "productId", as: "product" });
 
 // Programmatic Migration Runner
 const runMigrations = async () => {
@@ -284,6 +288,23 @@ const seedProducts = async () => {
       ];
       await OrderItem.bulkCreate(mockOrderItems);
       console.log(">>> Mock order items have been successfully seeded.");
+
+      // Seed Product Images
+      const mockProductImages = [
+        { productId: "strawberry-shortcake", imageUrl: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop" },
+        { productId: "strawberry-shortcake", imageUrl: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&auto=format&fit=crop" },
+        { productId: "chocolate-truffle", imageUrl: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&auto=format&fit=crop" },
+        { productId: "chocolate-truffle", imageUrl: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop" },
+        { productId: "classic-croissant", imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop" },
+        { productId: "classic-croissant", imageUrl: "https://images.unsplash.com/photo-1489659639091-8b687bc4386e?w=600&auto=format&fit=crop" },
+        { productId: "tiramisu-royal", imageUrl: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&auto=format&fit=crop" },
+        { productId: "matcha-crepe", imageUrl: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop" },
+        { productId: "red-velvet", imageUrl: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?w=600&auto=format&fit=crop" },
+        { productId: "almond-croissant", imageUrl: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&auto=format&fit=crop" },
+        { productId: "combo-royal-tea", imageUrl: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=600&auto=format&fit=crop" },
+      ];
+      await ProductImage.bulkCreate(mockProductImages);
+      console.log(">>> Mock product images have been successfully seeded.");
     }
   } catch (error) {
     console.error(">>> Error seeding products/reviews/order_items to DB: ", error);

@@ -115,11 +115,12 @@ const ProductDetailPage = () => {
     ingredients = "Nguyên liệu hữu cơ nhập khẩu cao cấp.",
   } = product;
 
-  // Render different thumbnail images (mocking gallery by applying zoom/rotations of main image)
+  // Render different thumbnail images (main image + auxiliary images from DB)
   const galleryImages = [
     image,
-    "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=600&auto=format&fit=crop",
+    ...(product.images || [])
+      .map((img) => img.imageUrl)
+      .filter((url) => url !== image)
   ];
 
   const handleAddToCart = () => {

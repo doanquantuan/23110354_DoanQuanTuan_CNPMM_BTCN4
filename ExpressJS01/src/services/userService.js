@@ -117,6 +117,7 @@ const loginService = async (email, password) => {
           email: user.email,
           name: user.name,
           id: user.id,
+          role: user.role,
         };
 
         const access_token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -129,6 +130,7 @@ const loginService = async (email, password) => {
             id: user.id,
             email: user.email,
             name: user.name,
+            role: user.role,
           },
         };
       }
